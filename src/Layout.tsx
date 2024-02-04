@@ -1,10 +1,10 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import Navbar from "./components/navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
 
 import "./styles/global.scss";
 import { ColorModeContext, useMode } from "./theme";
+import { Navbar } from "./components/navbar/Navbar";
 
 const Layout = () => {
   const [theme, colorMode] = useMode();
@@ -15,7 +15,6 @@ const Layout = () => {
         <CssBaseline />
         <div className="main">
           <Navbar />
-
           <div className="container">
             <div className="menuContainer">
               <Sidebar />
