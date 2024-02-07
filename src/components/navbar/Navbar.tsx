@@ -13,6 +13,7 @@ export const Navbar = (props: { onClick: () => void }) => {
       position="fixed"
       color="transparent"
       sx={{
+        display: { md: "none" },
         width: { md: `calc(100% - ${drawerWidth}px)` },
         ml: { md: `${drawerWidth}px` },
       }}
@@ -30,7 +31,7 @@ export const Navbar = (props: { onClick: () => void }) => {
             // color="inherit"
             aria-label="open drawer"
             onClick={props.onClick}
-            sx={{ display: { md: "none" } }}
+            sx={{ display: { md: "none" }, padding: "4px" }}
           >
             <MenuIcon />
           </IconButton>

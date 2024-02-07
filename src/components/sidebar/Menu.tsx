@@ -3,14 +3,15 @@ import { useState, useContext } from "react";
 import {
   Box,
   Collapse,
-  Divider,
   IconButton,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  TextField,
   Toolbar,
+  Typography,
 } from "@mui/material";
 
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -25,6 +26,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material";
 
 import { ColorModeContext } from "../../theme";
+import "./menu.scss";
 
 export const Menu = () => {
   const theme = useTheme();
@@ -38,7 +40,19 @@ export const Menu = () => {
 
   return (
     <div>
-      <Toolbar>
+      <Toolbar
+        className="toolbar"
+        sx={{
+          justifyContent: "space-between",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <img src="logo.svg" alt=""></img>
+          <Typography variant="h6" component="div">
+            dashboard
+          </Typography>
+        </Box>
+
         <Box
           sx={{
             borderRadius: 1,
@@ -49,7 +63,7 @@ export const Menu = () => {
           <IconButton
             size="small"
             onClick={colorMode.toggleColorMode}
-            sx={{ padding: 1 }}
+            sx={{ padding: "4px" }}
           >
             {theme.palette.mode === "dark" ? (
               <Brightness7Icon />
@@ -59,13 +73,25 @@ export const Menu = () => {
           </IconButton>
         </Box>
       </Toolbar>
-      <Divider />
+      <Box sx={{ display: "flex", justifyContent: "center", mx: "16px" }}>
+        <TextField
+          label="Search..."
+          id="filled-basic"
+          variant="outlined"
+          size="small"
+        />
+      </Box>
+
       <List
-        sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        sx={{ width: "100%" }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
+          <ListSubheader
+            component="div"
+            id="nested-list-subheader"
+            sx={{ textTransform: "uppercase", backgroundColor: "transparent" }}
+          >
             Nested List Items
           </ListSubheader>
         }
