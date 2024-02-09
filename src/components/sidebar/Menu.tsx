@@ -12,6 +12,9 @@ import {
   Toolbar,
   Typography,
   Divider,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
 } from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
@@ -183,9 +186,26 @@ export const Menu = () => {
           <ListItemText primary="Settings" />
         </ListItemButton>
       </List>
-      <Divider variant="middle"  sx={{ my: 1 }}/>
+      <Divider variant="middle" sx={{ my: 1 }} />
       <Box sx={{ display: "flex" }}>
-        <Typography>Hola</Typography>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="R" src="/" />
+          </ListItemAvatar>
+          <ListItemText
+            primary="Rene Ruano"
+            secondary={
+              <Typography
+                sx={{ display: "inline" }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                renerano@email.com
+              </Typography>
+            }
+          />
+        </ListItem>
       </Box>
     </Box>
   );
