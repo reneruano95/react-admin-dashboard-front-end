@@ -17,12 +17,12 @@ import {
   Avatar,
 } from "@mui/material";
 
-import HomeIcon from "@mui/icons-material/Home";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import GroupIcon from "@mui/icons-material/Group";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AppsIcon from "@mui/icons-material/Apps";
+import LoginIcon from "@mui/icons-material/Login";
 
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -105,15 +105,7 @@ export const Menu = () => {
         component="nav"
         aria-labelledby="nested-list"
       >
-        {/*item 1 */}
-        {/* <ListItemButton>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItemButton> */}
-
-        {/* item 2 */}
+        {/* item 1 */}
         <ListItemButton>
           <ListItemIcon>
             <DashboardIcon />
@@ -121,7 +113,7 @@ export const Menu = () => {
           <ListItemText primary="Dashboard" />
         </ListItemButton>
 
-        {/* item 3 */}
+        {/* item 2 */}
         <ListItemButton>
           <ListItemIcon>
             <RequestQuoteIcon />
@@ -129,7 +121,7 @@ export const Menu = () => {
           <ListItemText primary="Estimates" />
         </ListItemButton>
 
-        {/* item 4 */}
+        {/* item 3 */}
         <ListItemButton>
           <ListItemIcon>
             <RequestQuoteIcon />
@@ -137,7 +129,7 @@ export const Menu = () => {
           <ListItemText primary="Orders" />
         </ListItemButton>
 
-        {/* item 5 */}
+        {/* item 4 */}
         <ListItemButton onClick={handleClickApps}>
           <ListItemIcon>
             <AppsIcon />
@@ -156,7 +148,7 @@ export const Menu = () => {
           </List>
         </Collapse>
 
-        {/* item 6 */}
+        {/* item 5 */}
         <ListItemButton onClick={handleClickUsers}>
           <ListItemIcon>
             <GroupIcon />
@@ -178,7 +170,7 @@ export const Menu = () => {
           </List>
         </Collapse>
 
-        {/* item 7 */}
+        {/* item 6 */}
         <ListItemButton>
           <ListItemIcon>
             <SettingsIcon />
@@ -186,25 +178,37 @@ export const Menu = () => {
           <ListItemText primary="Settings" />
         </ListItemButton>
       </List>
-      <Divider variant="middle" sx={{ my: 1 }} />
-      <Box sx={{ display: "flex" }}>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
+
+      <Box sx={{ marginTop: "auto" }}>
+        <Divider variant="middle" sx={{ my: 1 }} />
+        <ListItem alignItems="flex-start" sx={{ alignItems: "center" }}>
+          <ListItemAvatar sx={{ m: 0 }}>
             <Avatar alt="R" src="/" />
           </ListItemAvatar>
           <ListItemText
-            primary="Rene Ruano"
+            primary={
+              <Typography
+                variant="body1"
+                color="text.primary"
+                sx={{ fontWeight: "bold" }}
+              >
+                Rene R.
+              </Typography>
+            }
             secondary={
               <Typography
-                sx={{ display: "inline" }}
-                component="span"
+                // component="span"
                 variant="body2"
                 color="text.primary"
+                sx={{ fontSize: "12px" }}
               >
-                renerano@email.com
+                reneruano@email.com
               </Typography>
             }
           />
+          <ListItemButton>
+            <LoginIcon />
+          </ListItemButton>
         </ListItem>
       </Box>
     </Box>
