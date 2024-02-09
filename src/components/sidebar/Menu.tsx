@@ -8,18 +8,22 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
   TextField,
   Toolbar,
   Typography,
+  Divider,
 } from "@mui/material";
 
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
+import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import GroupIcon from "@mui/icons-material/Group";
+import SettingsIcon from "@mui/icons-material/Settings";
+import AppsIcon from "@mui/icons-material/Apps";
+
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import StarBorder from "@mui/icons-material/StarBorder";
+
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 
@@ -32,14 +36,25 @@ export const Menu = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
-  const [open, setOpen] = useState(true);
+  const [openApps, setOpenApps] = useState(false);
+  const [openUsers, setOpenUsers] = useState(false);
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleClickApps = () => {
+    setOpenApps((prev) => !prev);
+  };
+
+  const handleClickUsers = () => {
+    setOpenUsers((prev) => !prev);
   };
 
   return (
-    <div>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Toolbar
         className="toolbar"
         sx={{
@@ -85,47 +100,93 @@ export const Menu = () => {
       <List
         sx={{ width: "100%" }}
         component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader
-            component="div"
-            id="nested-list-subheader"
-            sx={{ textTransform: "uppercase", backgroundColor: "transparent" }}
-          >
-            Nested List Items
-          </ListSubheader>
-        }
+        aria-labelledby="nested-list"
       >
+        {/*item 1 */}
+        {/* <ListItemButton>
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItemButton> */}
+
+        {/* item 2 */}
         <ListItemButton>
           <ListItemIcon>
-            <SendIcon />
+            <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="Dashboard" />
         </ListItemButton>
+
+        {/* item 3 */}
         <ListItemButton>
           <ListItemIcon>
-            <DraftsIcon />
+            <RequestQuoteIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="Estimates" />
         </ListItemButton>
-        <ListItemButton onClick={handleClick}>
+
+        {/* item 4 */}
+        <ListItemButton>
           <ListItemIcon>
-            <InboxIcon />
+            <RequestQuoteIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText primary="Orders" />
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+
+        {/* item 5 */}
+        <ListItemButton onClick={handleClickApps}>
+          <ListItemIcon>
+            <AppsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Apps" />
+          {openApps ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openApps} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
+            <ListItemButton>
+              <ListItemText inset primary="Tasks" />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText inset primary="Calendar" />
             </ListItemButton>
           </List>
         </Collapse>
+
+        {/* item 6 */}
+        <ListItemButton onClick={handleClickUsers}>
+          <ListItemIcon>
+            <GroupIcon />
+          </ListItemIcon>
+          <ListItemText primary="Users" />
+          {openUsers ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openUsers} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton>
+              <ListItemText inset primary="All users" />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText inset primary="Create a new user" />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText inset primary="Roles & permission" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+
+        {/* item 7 */}
+        <ListItemButton>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItemButton>
       </List>
-    </div>
+      <Divider variant="middle"  sx={{ my: 1 }}/>
+      <Box sx={{ display: "flex" }}>
+        <Typography>Hola</Typography>
+      </Box>
+    </Box>
   );
 };

@@ -41,8 +41,11 @@ export const Sidebar = () => {
       <Navbar onClick={handleDrawerToggle} />
       <Box
         component="nav"
-        sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
-        aria-label="mailbox folders"
+        sx={{
+          width: { md: drawerWidth },
+          flexShrink: { md: 0 },
+        }}
+        aria-label="dashboard folders"
       >
         {!matches ? (
           <Drawer

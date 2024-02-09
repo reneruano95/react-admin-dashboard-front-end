@@ -14,17 +14,13 @@ const Layout = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Sidebar />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-          }}
-        >
-          <div className="container">
-            <div className="contentContainer"></div>
-          </div>
+        <Box sx={{ display: "flex", height: "100%" }}>
+          <Sidebar />
+          <Box component="main">
+            <div className="container">
+              <div className="contentContainer"></div>
+            </div>
+          </Box>
         </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>
