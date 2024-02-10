@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 
+import { Link } from "react-router-dom";
+
 import {
   Box,
   Collapse,
@@ -22,7 +24,7 @@ import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import GroupIcon from "@mui/icons-material/Group";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AppsIcon from "@mui/icons-material/Apps";
-import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -106,28 +108,34 @@ export const Menu = () => {
         aria-labelledby="nested-list"
       >
         {/* item 1 */}
-        <ListItemButton>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItemButton>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
+        </Link>
 
         {/* item 2 */}
-        <ListItemButton>
-          <ListItemIcon>
-            <RequestQuoteIcon />
-          </ListItemIcon>
-          <ListItemText primary="Estimates" />
-        </ListItemButton>
+        <Link to="/estimates" style={{ textDecoration: "none" }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <RequestQuoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Estimates" />
+          </ListItemButton>
+        </Link>
 
         {/* item 3 */}
-        <ListItemButton>
-          <ListItemIcon>
-            <RequestQuoteIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItemButton>
+        <Link to="/orders" style={{ textDecoration: "none" }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <RequestQuoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Orders" />
+          </ListItemButton>
+        </Link>
 
         {/* item 4 */}
         <ListItemButton onClick={handleClickApps}>
@@ -207,7 +215,7 @@ export const Menu = () => {
             }
           />
           <ListItemButton>
-            <LoginIcon />
+            <LogoutIcon />
           </ListItemButton>
         </ListItem>
       </Box>
