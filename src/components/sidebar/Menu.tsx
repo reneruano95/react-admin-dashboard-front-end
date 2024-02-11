@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -18,6 +18,7 @@ import {
   ListItemAvatar,
   Avatar,
 } from "@mui/material";
+import Link, { LinkProps } from "@mui/material/Link";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
@@ -25,10 +26,8 @@ import GroupIcon from "@mui/icons-material/Group";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AppsIcon from "@mui/icons-material/Apps";
 import LogoutIcon from "@mui/icons-material/Logout";
-
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 
@@ -37,6 +36,23 @@ import { useTheme } from "@mui/material";
 import { ColorModeContext } from "../../theme";
 import "./menu.scss";
 
+interface LinkRouterProps extends LinkProps {
+  to: string;
+  replace?: boolean;
+}
+
+// LinkRouter component with RouterLink as link
+function LinkRouter(props: LinkRouterProps) {
+  // spread Link props to LinkRouter
+  return (
+    <Link
+      {...props}
+      // replace <a> with RouterLink
+      component={RouterLink as any}
+    />
+  );
+}
+
 export const Menu = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
@@ -44,12 +60,21 @@ export const Menu = () => {
   const [openApps, setOpenApps] = useState(false);
   const [openUsers, setOpenUsers] = useState(false);
 
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
   const handleClickApps = () => {
     setOpenApps((prev) => !prev);
   };
 
   const handleClickUsers = () => {
     setOpenUsers((prev) => !prev);
+  };
+
+  const handleListItemClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number
+  ) => {
+    setSelectedIndex(index);
   };
 
   return (
@@ -108,34 +133,43 @@ export const Menu = () => {
         aria-labelledby="nested-list"
       >
         {/* item 1 */}
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <ListItemButton>
+        <LinkRouter to="/" underline="none" color="inherit">
+          <ListItemButton
+            selected={selectedIndex === 0}
+            onClick={(event) => handleListItemClick(event, 0)}
+          >
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItemButton>
-        </Link>
+        </LinkRouter>
 
         {/* item 2 */}
-        <Link to="/estimates" style={{ textDecoration: "none" }}>
-          <ListItemButton>
+        <LinkRouter to="/estimates" underline="none" color="inherit">
+          <ListItemButton
+            selected={selectedIndex === 1}
+            onClick={(event) => handleListItemClick(event, 1)}
+          >
             <ListItemIcon>
               <RequestQuoteIcon />
             </ListItemIcon>
             <ListItemText primary="Estimates" />
           </ListItemButton>
-        </Link>
+        </LinkRouter>
 
         {/* item 3 */}
-        <Link to="/orders" style={{ textDecoration: "none" }}>
-          <ListItemButton>
+        <LinkRouter to="/orders" underline="none" color="inherit">
+          <ListItemButton
+            selected={selectedIndex === 2}
+            onClick={(event) => handleListItemClick(event, 2)}
+          >
             <ListItemIcon>
               <RequestQuoteIcon />
             </ListItemIcon>
             <ListItemText primary="Orders" />
           </ListItemButton>
-        </Link>
+        </LinkRouter>
 
         {/* item 4 */}
         <ListItemButton onClick={handleClickApps}>
@@ -147,10 +181,17 @@ export const Menu = () => {
         </ListItemButton>
         <Collapse in={openApps} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 3}
+              onClick={(event) => handleListItemClick(event, 3)}
+            >
               <ListItemText inset primary="Tasks" />
             </ListItemButton>
-            <ListItemButton>
+
+            <ListItemButton
+              selected={selectedIndex === 4}
+              onClick={(event) => handleListItemClick(event, 4)}
+            >
               <ListItemText inset primary="Calendar" />
             </ListItemButton>
           </List>
@@ -166,20 +207,33 @@ export const Menu = () => {
         </ListItemButton>
         <Collapse in={openUsers} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 5}
+              onClick={(event) => handleListItemClick(event, 5)}
+            >
               <ListItemText inset primary="All users" />
             </ListItemButton>
-            <ListItemButton>
+
+            <ListItemButton
+              selected={selectedIndex === 6}
+              onClick={(event) => handleListItemClick(event, 6)}
+            >
               <ListItemText inset primary="Create a new user" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton
+              selected={selectedIndex === 7}
+              onClick={(event) => handleListItemClick(event, 7)}
+            >
               <ListItemText inset primary="Roles & permission" />
             </ListItemButton>
           </List>
         </Collapse>
 
         {/* item 6 */}
-        <ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 8}
+          onClick={(event) => handleListItemClick(event, 8)}
+        >
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
